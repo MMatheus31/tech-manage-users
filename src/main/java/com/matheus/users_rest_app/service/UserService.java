@@ -24,15 +24,21 @@ public class UserService {
 
         System.out.println("Buscando usuário por ID. ID: " + id);
 
-        Optional<Users> user = userRepository.findById(id);
-        return user.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        try {
+
+            Optional<Users> user = userRepository.findById(id);
+
+            return user.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     public ResponseEntity<Users> save(Users user) {
 
         System.out.println("Criando novo usuário. ID: " + user.getId());
-
         Optional<Users> existingUser = userRepository.findById(user.getId());
 
         try {
@@ -55,7 +61,6 @@ public class UserService {
     public ResponseEntity<Users> update(Long id, Users user) {
 
         System.out.println("Alterando um usuário. ID: " + id);
-
         Optional<Users> existingUser = userRepository.findById(id);
 
         try {
@@ -79,7 +84,6 @@ public class UserService {
     public ResponseEntity<String> delete(Long id) {
 
         System.out.println("Deletando um usuário. ID: " + id);
-
         Optional<Users> existingUser = userRepository.findById(id);
 
         try {
