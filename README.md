@@ -46,8 +46,8 @@ Certifique-se de ter os seguintes componentes instalados:
 
 1. Clone este repositório:
    ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <PASTA_DO_REPOSITORIO>
+   git clone https://github.com/MMatheus31/tech-manage-users
+   cd tech-manage-users
    ```
 
 2. Compile e construa o projeto usando Maven:
